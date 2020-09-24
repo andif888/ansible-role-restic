@@ -1,0 +1,23 @@
+---
+# tasks file for ansible-role-restic
+- name: restic - download and install
+  get_url:
+    url: '{{ restic_download_url }}'
+    dest: /tmp
+
+- name: restic - extract
+  shell: 'bzip2 -d /tmp/{{ restic_filename_zip }}'
+
+- name: restic - copy to install dir
+  copy:
+    src: '/tmp/{{ restic_filename_exe }}'
+    dest: '{{ restic_install_folder }}/{{ restic_filename_exe }}'
+    remote_src: yes
+    owner: '{{ restic_file_owner }}'
+    group: '{{ restic_file_group }}'
+    mode: '{{ restic_file_mode }}'
+
+- name: restic - Delete temporary extract dir
+  file:
+    path: '/tmp/{{ restic_filename_exe }}'
+    state: absent
