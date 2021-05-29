@@ -5,6 +5,11 @@
     url: '{{ restic_download_url }}'
     dest: /tmp
 
+- name: restic - Ensure temporary extract dir is absent
+  file:
+    path: '/tmp/{{ restic_filename_exe }}'
+    state: absent
+
 - name: restic - extract
   shell: 'bzip2 -d /tmp/{{ restic_filename_zip }}'
 
