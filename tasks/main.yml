@@ -10,6 +10,11 @@
     path: '/tmp/{{ restic_filename_exe }}'
     state: absent
 
+- name: restic - Check that {{ restic_filename_exe }} exists
+  stat:
+    path: '/tmp/{{ restic_filename_exe }}'
+  register: stat_result
+
 - name: restic - extract
   shell: 'bzip2 -d /tmp/{{ restic_filename_zip }}'
 
