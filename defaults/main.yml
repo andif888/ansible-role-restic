@@ -3,7 +3,6 @@
 restic_version: '0.14.0'
 
 restic_download_url: 'https://github.com/restic/restic/releases/download/v{{ restic_version }}/restic_{{ restic_version }}_linux_amd64.bz2'
-# restic_unzip_subfoldername: 'restic_{{ restic_version }}_windows_amd64'
 restic_filename_zip: 'restic_{{ restic_version }}_linux_amd64.bz2'
 restic_filename_exe: 'restic_{{ restic_version }}_linux_amd64'
 restic_install_folder: '/usr/local/bin'

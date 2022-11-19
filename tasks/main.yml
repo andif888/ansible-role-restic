@@ -1,25 +1,25 @@
 ---
 # tasks file for ansible-role-restic
 - name: restic - download and install
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ restic_download_url }}'
     dest: /tmp
 
 - name: restic - Ensure temporary extract dir is absent
-  file:
+  ansible.builtin.file:
     path: '/tmp/{{ restic_filename_exe }}'
     state: absent
 
 - name: restic - Check that {{ restic_filename_exe }} exists
-  stat:
+  ansible.builtin.stat:
     path: '/tmp/{{ restic_filename_exe }}'
   register: stat_result
 
 - name: restic - extract
-  shell: 'bzip2 -d /tmp/{{ restic_filename_zip }}'
+  ansible.builtin.shell: 'bzip2 -d /tmp/{{ restic_filename_zip }}'
 
 - name: restic - copy to install dir
-  copy:
+  ansible.builtin.copy:
     src: '/tmp/{{ restic_filename_exe }}'
     dest: '{{ restic_install_folder }}/restic'
     remote_src: yes
@@ -28,6 +28,6 @@
     mode: '{{ restic_file_mode }}'
 
 - name: restic - Delete temporary extract dir
-  file:
+  ansible.builtin.file:
     path: '/tmp/{{ restic_filename_exe }}'
     state: absent
