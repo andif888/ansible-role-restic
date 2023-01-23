@@ -22,3 +22,5 @@
     owner: '{{ restic_file_owner }}'
     group: '{{ restic_file_group }}'
     mode: '{{ restic_file_mode }}'
+  ignore_errors: "{{ ansible_check_mode }}"
+
